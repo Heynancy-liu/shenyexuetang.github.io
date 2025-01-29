@@ -32,6 +32,15 @@
       z-index: 1;
     }
 
+    .png-image {
+      position: absolute;
+      top: 50%;
+      left: 10px; /* 调整到左上角 */
+      transform: translateY(-50%); /* 垂直居中 */
+      max-width: 50%; /* 图片最大宽度为页面宽度的50% */
+      z-index: 1;
+    }
+
     button {
       padding: 5px 10px; /* 缩小按钮大小 */
       font-size: 12px; /* 缩小字体大小 */
@@ -50,6 +59,9 @@
 <body>
   <!-- 背景图片 -->
   <div class="background-image"></div>
+
+  <!-- PNG图片 -->
+  <img src="wordcloud_rose.png" alt="Word Cloud Rose" class="png-image">
 
   <!-- 音乐播放器 -->
   <div class="music-player">
