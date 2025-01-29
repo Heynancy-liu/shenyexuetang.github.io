@@ -42,6 +42,16 @@
       z-index: 1;
     }
 
+    .gif-image {
+      position: absolute;
+      top: 50%;
+      right: 10px; /* 调整到右上角 */
+      transform: translateY(-50%); /* 垂直居中 */
+      max-width: 40%; /* 图片最大宽度为页面宽度的40% */
+      max-height: 90%; /* 图片最大高度为页面高度的90% */
+      z-index: 1;
+    }
+
     button {
       padding: 5px 10px; /* 缩小按钮大小 */
       font-size: 12px; /* 缩小字体大小 */
@@ -63,6 +73,9 @@
 
   <!-- PNG图片 -->
   <img src="wordcloud_rose.png" alt="Word Cloud Rose" class="png-image">
+
+  <!-- GIF图片 -->
+  <img src="music_analysis.gif" alt="Music Analysis GIF" class="gif-image">
 
   <!-- 音乐播放器 -->
   <div class="music-player">
