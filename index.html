@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音乐播放网页</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .background-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('background.jpg'); /* 替换为你的背景图片路径 */
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+    }
+
+    .music-player {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+  </style>
+</head>
+<body>
+  <!-- 背景图片 -->
+  <div class="background-image"></div>
+
+  <!-- 音乐播放器 -->
+  <div class="music-player">
+    <button id="play-pause-button">播放音乐</button>
+    <audio id="background-music" src="music.mp3" loop></audio>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const playPauseButton = document.getElementById("play-pause-button");
+      const backgroundMusic = document.getElementById("background-music");
+
+      playPauseButton.addEventListener("click", function() {
+        if (backgroundMusic.paused) {
+          backgroundMusic.play();
+          playPauseButton.textContent = "暂停音乐";
+        } else {
+          backgroundMusic.pause();
+          playPauseButton.textContent = "播放音乐";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
