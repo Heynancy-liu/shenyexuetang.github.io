@@ -82,9 +82,7 @@
       playPauseButton.addEventListener("click", function() {
         if (backgroundMusic.paused) {
           // 如果音频处于暂停状态，播放指定时间段
-          if (backgroundMusic.currentTime < startTime) {
-            backgroundMusic.currentTime = startTime; // 设置当前播放位置为起始时间
-          }
+          backgroundMusic.currentTime = startTime; // 设置当前播放位置为起始时间
           backgroundMusic.play();
           playPauseButton.textContent = "暂停音乐";
         } else {
@@ -97,8 +95,15 @@
       backgroundMusic.addEventListener("timeupdate", function() {
         if (backgroundMusic.currentTime >= endTime) {
           backgroundMusic.pause();
-          backgroundMusic.currentTime = endTime; // 重置到结束时间
+          backgroundMusic.currentTime = startTime; // 重置到起始时间
+          backgroundMusic.play(); // 重新播放
         }
+      });
+
+      // 监听音频结束事件，确保循环播放
+      backgroundMusic.addEventListener("ended", function() {
+        backgroundMusic.currentTime = startTime; // 重置到起始时间
+        backgroundMusic.play(); // 重新播放
       });
     });
   </script>
