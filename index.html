@@ -75,13 +75,29 @@
       const playPauseButton = document.getElementById("play-pause-button");
       const backgroundMusic = document.getElementById("background-music");
 
+      // 定义播放的起始时间和结束时间
+      const startTime = 12; // 从第12秒开始
+      const endTime = 59;   // 到第59秒结束
+
       playPauseButton.addEventListener("click", function() {
         if (backgroundMusic.paused) {
+          // 如果音频处于暂停状态，播放指定时间段
+          if (backgroundMusic.currentTime < startTime) {
+            backgroundMusic.currentTime = startTime; // 设置当前播放位置为起始时间
+          }
           backgroundMusic.play();
           playPauseButton.textContent = "暂停音乐";
         } else {
           backgroundMusic.pause();
           playPauseButton.textContent = "播放音乐";
+        }
+      });
+
+      // 监听音频播放时间，防止播放超过指定的结束时间
+      backgroundMusic.addEventListener("timeupdate", function() {
+        if (backgroundMusic.currentTime >= endTime) {
+          backgroundMusic.pause();
+          backgroundMusic.currentTime = endTime; // 重置到结束时间
         }
       });
     });
