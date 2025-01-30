@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>音乐播放网页</title>
+  <title>生命是一张悬而未决的网</title>
   <style>
     body, html {
       margin: 0;
@@ -30,7 +30,7 @@
       top: 50%;
       left: 10px; /* 调整到左上角 */
       transform: translateY(-50%); /* 垂直居中 */
-      max-width: 55%; /* 图片最大宽度为页面宽度的55% */
+      max-width: 60%; /* 图片最大宽度为页面宽度的60% */
       max-height: 95%; /* 图片最大高度为页面高度的95% */
       z-index: 1;
     }
@@ -40,7 +40,7 @@
       top: 50%;
       right: 100px; /* 调整到页面右侧 */
       transform: translateY(-50%); /* 垂直居中 */
-      max-width: 45%; /* 容器最大宽度为页面宽度的35% */
+      max-width: 55%; /* 容器最大宽度为页面宽度的55% */
       max-height: 95%; /* 容器最大高度为页面高度的95% */
       z-index: 1;
       display: flex;
@@ -52,7 +52,7 @@
     .media-item {
       display: flex;
       align-items: center;
-      margin-bottom: 35px; /* 调整部件之间的垂直间距 */
+      margin-bottom: 40px; /* 调整部件之间的垂直间距 */
       width: 100%;
     }
 
@@ -64,8 +64,8 @@
     }
 
     button {
-      padding: 10px 20px; /* 调整按钮大小 */
-      font-size: 16px; /* 调整字体大小 */
+      padding: 4px 10px; /* 调整按钮大小 */
+      font-size: 14px; /* 调整字体大小 */
       font-family: 'Arial', sans-serif; /* 设置字体 */
       cursor: pointer;
       color: #000000; /* 设置字体颜色 */
@@ -77,7 +77,7 @@
       text-align: center; /* 设置文本居中 */
       transition: background-color 0.3s; /* 添加过渡效果 */
     }
-
+      
     button:hover {
       background-color: rgba(0, 100, 255, 0.8); /* 鼠标悬停时背景颜色 */
     }
@@ -94,7 +94,7 @@
   <div class="media-container">
     <!-- 喜欢 -->
     <div class="media-item" style="margin-left: -60px;">
-      <button id="play-pause-button-喜欢">播放《喜欢》</button>
+      <button id="play-pause-button-喜欢" data-song-text="喜欢">播放《喜欢》</button>
       <video id="video-喜欢" class="video-image" loop muted>
         <source src="喜欢.mp4" type="video/mp4">
         您的浏览器不支持视频播放。
@@ -104,7 +104,7 @@
 
     <!-- 如何 -->
     <div class="media-item" style="margin-left: 30px;">
-      <button id="play-pause-button-如何">播放《如何》</button>
+      <button id="play-pause-button-如何" data-song-text="如何">播放《如何》</button>
       <video id="video-如何" class="video-image" loop muted>
         <source src="如何.mp4" type="video/mp4">
         您的浏览器不支持视频播放。
@@ -114,7 +114,7 @@
 
     <!-- 亲爱的 -->
     <div class="media-item" style="margin-left: 0px;">
-      <button id="play-pause-button-亲爱的">播放《亲爱的》</button>
+      <button id="play-pause-button-亲爱的" data-song-text="亲爱的">播放《亲爱的》</button>
       <video id="video-亲爱的" class="video-image" loop muted>
         <source src="亲爱的.mp4" type="video/mp4">
         您的浏览器不支持视频播放。
