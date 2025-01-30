@@ -40,7 +40,7 @@
       top: 50%;
       right: 100px; /* 调整到页面右侧 */
       transform: translateY(-50%); /* 垂直居中 */
-      max-width: 45%; /* 容器最大宽度为页面宽度的45% */
+      max-width: 35%; /* 容器最大宽度为页面宽度的35% */
       max-height: 95%; /* 容器最大高度为页面高度的95% */
       z-index: 1;
       display: flex;
@@ -52,7 +52,7 @@
     .media-item {
       display: flex;
       align-items: center;
-      margin-bottom: 35px; /* 调整部件之间的垂直间距 */
+      margin-bottom: 20px; /* 调整部件之间的垂直间距 */
       width: 100%;
     }
 
@@ -72,11 +72,6 @@
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       margin-right: 10px;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-      width: 50px; /* 设置按钮宽度 */
-      height: 50px; /* 设置按钮高度 */
     }
 
     button:hover {
@@ -94,10 +89,8 @@
   <!-- 媒体容器 -->
   <div class="media-container">
     <!-- 喜欢 -->
-    <div class="media-item" style="margin-left: -10px;">
-      <button id="play-pause-button-喜欢" type="button">
-        <img src="播放《喜欢》.png" alt="播放喜欢" style="width: 100%; height: auto;">
-      </button>
+    <div class="media-item" style="margin-left: -15px;">
+      <button id="play-pause-button-喜欢">播放喜欢</button>
       <video id="video-喜欢" class="video-image" loop muted>
         <source src="喜欢.mp4" type="video/mp4">
         您的浏览器不支持视频播放。
@@ -106,10 +99,8 @@
     </div>
 
     <!-- 如何 -->
-    <div class="media-item" style="margin-left: 40px;">
-      <button id="play-pause-button-如何" type="button">
-        <img src="播放《如何》.png" alt="播放如何" style="width: 100%; height: auto;">
-      </button>
+    <div class="media-item" style="margin-left: 45px;">
+      <button id="play-pause-button-如何">播放如何</button>
       <video id="video-如何" class="video-image" loop muted>
         <source src="如何.mp4" type="video/mp4">
         您的浏览器不支持视频播放。
@@ -119,9 +110,7 @@
 
     <!-- 亲爱的 -->
     <div class="media-item" style="margin-left: 20px;">
-      <button id="play-pause-button-亲爱的" type="button">
-        <img src="播放《亲爱的》.png" alt="播放亲爱的" style="width: 100%; height: auto;">
-      </button>
+      <button id="play-pause-button-亲爱的">播放亲爱的</button>
       <video id="video-亲爱的" class="video-image" loop muted>
         <source src="亲爱的.mp4" type="video/mp4">
         您的浏览器不支持视频播放。
