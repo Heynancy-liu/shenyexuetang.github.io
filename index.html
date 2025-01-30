@@ -38,9 +38,9 @@
     .media-container {
       position: absolute;
       top: 50%;
-      right: 105px; /* 调整到右上角 */
+      right: 100px; /* 调整到页面右侧 */
       transform: translateY(-50%); /* 垂直居中 */
-      max-width: 35%; /* 容器最大宽度为页面宽度的35% */
+      max-width: 45%; /* 容器最大宽度为页面宽度的45% */
       max-height: 95%; /* 容器最大高度为页面高度的95% */
       z-index: 1;
       display: flex;
@@ -52,7 +52,7 @@
     .media-item {
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 20px; /* 调整部件之间的垂直间距 */
       width: 100%;
     }
 
@@ -89,7 +89,7 @@
   <!-- 媒体容器 -->
   <div class="media-container">
     <!-- 喜欢 -->
-    <div class="media-item">
+    <div class="media-item" style="margin-left: 200px;">
       <button id="play-pause-button-喜欢">播放喜欢</button>
       <video id="video-喜欢" class="video-image" loop muted>
         <source src="喜欢.mp4" type="video/mp4">
@@ -99,7 +99,7 @@
     </div>
 
     <!-- 如何 -->
-    <div class="media-item">
+    <div class="media-item" style="margin-left: 50px;">
       <button id="play-pause-button-如何">播放如何</button>
       <video id="video-如何" class="video-image" loop muted>
         <source src="如何.mp4" type="video/mp4">
@@ -109,7 +109,7 @@
     </div>
 
     <!-- 亲爱的 -->
-    <div class="media-item">
+    <div class="media-item" style="margin-left: 100px;">
       <button id="play-pause-button-亲爱的">播放亲爱的</button>
       <video id="video-亲爱的" class="video-image" loop muted>
         <source src="亲爱的.mp4" type="video/mp4">
