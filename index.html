@@ -25,13 +25,6 @@
       z-index: -1;
     }
 
-    .music-player {
-      position: absolute;
-      top: 10px; /* 调整到右上角 */
-      right: 10px; /* 调整到右上角 */
-      z-index: 1;
-    }
-
     .png-image {
       position: absolute;
       top: 50%;
@@ -42,15 +35,26 @@
       z-index: 1;
     }
 
-    .gif-image {
+    .video-image {
       position: absolute;
       top: 50%;
       right: 10px; /* 调整到右上角 */
       transform: translateY(-50%); /* 垂直居中 */
-      max-width: 40%; /* 图片最大宽度为页面宽度的40% */
-      max-height: 90%; /* 图片最大高度为页面高度的90% */
+      max-width: 40%; /* 视频最大宽度为页面宽度的40% */
+      max-height: 90%; /* 视频最大高度为页面高度的90% */
       z-index: 1;
-      display: none; /* 默认隐藏 */
+    }
+
+    .music-player {
+      position: absolute;
+      top: 50%;
+      right: 50%; /* 调整到视频左侧 */
+      transform: translateY(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     button {
@@ -75,8 +79,11 @@
   <!-- PNG图片 -->
   <img src="wordcloud_rose.png" alt="Word Cloud Rose" class="png-image">
 
-  <!-- GIF图片 -->
-  <img src="music_analysis_喜欢.gif" alt="Music Analysis GIF" class="gif-image" id="gif-image">
+  <!-- 视频 -->
+  <video id="video-image" class="video-image" loop muted>
+    <source src="喜欢.mp4" type="video/mp4">
+    您的浏览器不支持视频播放。
+  </video>
 
   <!-- 音乐播放器 -->
   <div class="music-player">
@@ -88,7 +95,7 @@
     document.addEventListener("DOMContentLoaded", function() {
       const playPauseButton = document.getElementById("play-pause-button");
       const backgroundMusic = document.getElementById("background-music");
-      const gifImage = document.getElementById("gif-image");
+      const videoImage = document.getElementById("video-image");
 
       // 定义播放的起始时间和结束时间
       const startTime = 38; // 从第38秒开始
@@ -102,11 +109,11 @@
           }
           backgroundMusic.play();
           playPauseButton.textContent = "暂停音乐";
-          gifImage.style.display = 'block'; // 显示GIF
+          videoImage.play(); // 播放视频
         } else {
           backgroundMusic.pause();
           playPauseButton.textContent = "播放音乐";
-          gifImage.style.display = 'none'; // 隐藏GIF
+          videoImage.pause(); // 暂停视频
         }
       });
 
@@ -115,7 +122,8 @@
         if (backgroundMusic.currentTime >= endTime) {
           backgroundMusic.currentTime = startTime; // 重置到起始时间
           backgroundMusic.play(); // 重新播放
-          gifImage.style.display = 'block'; // 重新显示GIF
+          videoImage.currentTime = 0; // 重置视频到开始
+          videoImage.play(); // 重新播放视频
         }
       });
 
@@ -123,7 +131,8 @@
       backgroundMusic.addEventListener("ended", function() {
         backgroundMusic.currentTime = startTime; // 重置到起始时间
         backgroundMusic.play(); // 重新播放
-        gifImage.style.display = 'block'; // 重新显示GIF
+        videoImage.currentTime = 0; // 重置视频到开始
+        videoImage.play(); // 重新播放视频
       });
     });
   </script>
