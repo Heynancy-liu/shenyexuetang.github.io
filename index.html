@@ -11,19 +11,6 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-    }<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>生命是一张悬而未决的网</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
     }
 
     .background-image {
@@ -51,13 +38,13 @@
     .media-container {
       position: absolute;
       top: 50%;
-      left: 65%; 
+      right: 10px; /* 调整到页面右侧 */
       transform: translateY(-50%); /* 垂直居中 */
       max-width: 40%; /* 容器最大宽度为页面宽度的40% */
       max-height: 95%; /* 容器最大高度为页面高度的95% */
       z-index: 1;
       display: flex;
-      flex-direction: column;
+      flex-direction: column; /* 垂直排列 */
       align-items: center;
       justify-content: center;
     }
@@ -65,7 +52,7 @@
     .media-item {
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      margin-top: 20px; /* 调整部件之间的垂直间距 */
       width: 100%;
     }
 
@@ -78,7 +65,7 @@
 
     button {
       padding: 5px 10px; /* 缩小按钮大小 */
-      font-size: 12px; /* 缩小字体大小 */
+      font-size: 2px; /* 缩小字体大小 */
       cursor: pointer;
       background-color: rgba(255, 255, 255, 0.8);
       border: none;
@@ -102,7 +89,7 @@
   <!-- 媒体容器 -->
   <div class="media-container">
     <!-- 喜欢 -->
-    <div class="media-item">
+    <div class="media-item" style="margin-left: 0px;">
       <button id="play-pause-button-喜欢">播放喜欢</button>
       <video id="video-喜欢" class="video-image" loop muted>
         <source src="喜欢.mp4" type="video/mp4">
@@ -112,7 +99,7 @@
     </div>
 
     <!-- 如何 -->
-    <div class="media-item">
+    <div class="media-item" style="margin-left: 20px;">
       <button id="play-pause-button-如何">播放如何</button>
       <video id="video-如何" class="video-image" loop muted>
         <source src="如何.mp4" type="video/mp4">
@@ -122,7 +109,7 @@
     </div>
 
     <!-- 亲爱的 -->
-    <div class="media-item">
+    <div class="media-item" style="margin-left: 40px;">
       <button id="play-pause-button-亲爱的">播放亲爱的</button>
       <video id="video-亲爱的" class="video-image" loop muted>
         <source src="亲爱的.mp4" type="video/mp4">
@@ -192,124 +179,3 @@
   </script>
 </body>
 </html>
-
-    .background-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('张悬.jpg'); /* 替换为你的背景图片路径 */
-      background-size: cover;
-      background-position: center;
-      z-index: -1;
-    }
-
-    .png-image {
-      position: absolute;
-      top: 50%;
-      left: 10px; /* 调整到左上角 */
-      transform: translateY(-50%); /* 垂直居中 */
-      max-width: 55%; /* 图片最大宽度为页面宽度的55% */
-      max-height: 95%; /* 图片最大高度为页面高度的95% */
-      z-index: 1;
-    }
-
-    .media-container {
-      position: absolute;
-      top: 50%;
-      left: 50%; /* 调整到页面中心 */
-      transform: translate(-50%, -50%); /* 水平和垂直居中 */
-      max-width: 40%; /* 容器最大宽度为页面宽度的40% */
-      max-height: 95%; /* 容器最大高度为页面高度的95% */
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .media-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      width: 100%;
-    }
-
-    .video-image {
-      max-width: 100%;
-      max-height: 100%;
-      margin-left: 10px;
-      flex: 1;
-    }
-
-    button {
-      padding: 5px 10px; /* 缩小按钮大小 */
-      font-size: 12px; /* 缩小字体大小 */
-      cursor: pointer;
-      background-color: rgba(255, 255, 255, 0.8);
-      border: none;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      margin-right: 10px;
-    }
-
-    button:hover {
-      background-color: rgba(255, 255, 255, 1);
-    }
-
-    /* 为每组设置不同的margin-top值来实现错落效果 */
-    #play-pause-button-喜欢 {
-      margin-top: 20px;
-    }
-
-    #play-pause-button-如何 {
-      margin-top: 40px;
-    }
-
-    #play-pause-button-亲爱的 {
-      margin-top: 60px;
-    }
-  </style>
-</head>
-<body>
-  <!-- 背景图片 -->
-  <div class="background-image"></div>
-
-  <!-- PNG图片 -->
-  <img src="wordcloud_rose.png" alt="Word Cloud Rose" class="png-image">
-
-  <!-- 媒体容器 -->
-  <div class="media-container">
-    <!-- 喜欢 -->
-    <div class="media-item">
-      <button id="play-pause-button-喜欢">播放喜欢</button>
-      <video id="video-喜欢" class="video-image" loop muted>
-        <source src="喜欢.mp4" type="video/mp4">
-        您的浏览器不支持视频播放。
-      </video>
-      <audio id="audio-喜欢" src="喜欢.mp3" loop></audio>
-    </div>
-
-    <!-- 如何 -->
-    <div class="media-item">
-      <button id="play-pause-button-如何">播放如何</button>
-      <video id="video-如何" class="video-image" loop muted>
-        <source src="如何.mp4" type="video/mp4">
-        您的浏览器不支持视频播放。
-      </video>
-      <audio id="audio-如何" src="如何.mp3" loop></audio>
-    </div>
-
-    <!-- 亲爱的 -->
-    <div class="media-item">
-      <button id="play-pause-button-亲爱的">播放亲爱的</button>
-      <video id="video-亲爱的" class="video-image" loop muted>
-        <source src="亲爱的.mp4" type="video/mp4">
-        您的浏览器不支持视频播放。
-      </video>
-      <audio id="audio-亲爱的" src="亲爱的.mp3" loop></audio>
-    </div>
-  </div>
-
-  
