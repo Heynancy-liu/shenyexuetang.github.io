@@ -50,6 +50,7 @@
       max-width: 40%; /* 图片最大宽度为页面宽度的40% */
       max-height: 90%; /* 图片最大高度为页面高度的90% */
       z-index: 1;
+      display: none; /* 默认隐藏 */
     }
 
     button {
@@ -75,22 +76,23 @@
   <img src="wordcloud_rose.png" alt="Word Cloud Rose" class="png-image">
 
   <!-- GIF图片 -->
-  <img src="music_analysis.gif" alt="Music Analysis GIF" class="gif-image">
+  <img src="music_analysis_喜欢.gif" alt="Music Analysis GIF" class="gif-image" id="gif-image">
 
   <!-- 音乐播放器 -->
   <div class="music-player">
     <button id="play-pause-button">播放音乐</button>
-    <audio id="background-music" src="如何.mp3" loop></audio> <!-- 修改为如何.mp3 -->
+    <audio id="background-music" src="喜欢.mp3" loop></audio> <!-- 修改为喜欢.mp3 -->
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const playPauseButton = document.getElementById("play-pause-button");
       const backgroundMusic = document.getElementById("background-music");
+      const gifImage = document.getElementById("gif-image");
 
       // 定义播放的起始时间和结束时间
-      const startTime = 12; // 从第12秒开始
-      const endTime = 59;   // 到第59秒结束
+      const startTime = 38; // 从第38秒开始
+      const endTime = 97;   // 到第97秒结束
 
       playPauseButton.addEventListener("click", function() {
         if (backgroundMusic.paused) {
@@ -100,9 +102,11 @@
           }
           backgroundMusic.play();
           playPauseButton.textContent = "暂停音乐";
+          gifImage.style.display = 'block'; // 显示GIF
         } else {
           backgroundMusic.pause();
           playPauseButton.textContent = "播放音乐";
+          gifImage.style.display = 'none'; // 隐藏GIF
         }
       });
 
@@ -111,6 +115,7 @@
         if (backgroundMusic.currentTime >= endTime) {
           backgroundMusic.currentTime = startTime; // 重置到起始时间
           backgroundMusic.play(); // 重新播放
+          gifImage.style.display = 'block'; // 重新显示GIF
         }
       });
 
@@ -118,6 +123,7 @@
       backgroundMusic.addEventListener("ended", function() {
         backgroundMusic.currentTime = startTime; // 重置到起始时间
         backgroundMusic.play(); // 重新播放
+        gifImage.style.display = 'block'; // 重新显示GIF
       });
     });
   </script>
