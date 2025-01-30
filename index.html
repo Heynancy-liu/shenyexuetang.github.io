@@ -77,6 +77,19 @@
     button:hover {
       background-color: rgba(255, 255, 255, 1);
     }
+
+    /* 为每组设置不同的margin-top值来实现错落效果 */
+    #play-pause-button-喜欢 {
+      margin-top: 20px;
+    }
+
+    #play-pause-button-如何 {
+      margin-top: 40px;
+    }
+
+    #play-pause-button-亲爱的 {
+      margin-top: 60px;
+    }
   </style>
 </head>
 <body>
@@ -119,63 +132,4 @@
     </div>
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // 定义每首歌的播放起始时间和结束时间
-      const songSettings = {
-        喜欢: { startTime: 38, endTime: 97 },
-        如何: { startTime: 12, endTime: 59 },
-        亲爱的: { startTime: 39, endTime: 87 }
-      };
-
-      // 初始化播放器
-      const players = [
-        { buttonId: "play-pause-button-喜欢", audioId: "audio-喜欢", videoId: "video-喜欢", song: "喜欢" },
-        { buttonId: "play-pause-button-如何", audioId: "audio-如何", videoId: "video-如何", song: "如何" },
-        { buttonId: "play-pause-button-亲爱的", audioId: "audio-亲爱的", videoId: "video-亲爱的", song: "亲爱的" }
-      ];
-
-      players.forEach(player => {
-        const playPauseButton = document.getElementById(player.buttonId);
-        const backgroundMusic = document.getElementById(player.audioId);
-        const videoImage = document.getElementById(player.videoId);
-        const { startTime, endTime } = songSettings[player.song];
-
-        playPauseButton.addEventListener("click", function() {
-          if (backgroundMusic.paused) {
-            // 如果音频处于暂停状态，播放指定时间段
-            if (backgroundMusic.currentTime < startTime) {
-              backgroundMusic.currentTime = startTime; // 设置当前播放位置为起始时间
-            }
-            backgroundMusic.play();
-            playPauseButton.textContent = "暂停";
-            videoImage.play(); // 播放视频
-          } else {
-            backgroundMusic.pause();
-            playPauseButton.textContent = "播放";
-            videoImage.pause(); // 暂停视频
-          }
-        });
-
-        // 监听音频播放时间，防止播放超过指定的结束时间
-        backgroundMusic.addEventListener("timeupdate", function() {
-          if (backgroundMusic.currentTime >= endTime) {
-            backgroundMusic.currentTime = startTime; // 重置到起始时间
-            backgroundMusic.play(); // 重新播放
-            videoImage.currentTime = 0; // 重置视频到开始
-            videoImage.play(); // 重新播放视频
-          }
-        });
-
-        // 监听音频结束事件，确保循环播放
-        backgroundMusic.addEventListener("ended", function() {
-          backgroundMusic.currentTime = startTime; // 重置到起始时间
-          backgroundMusic.play(); // 重新播放
-          videoImage.currentTime = 0; // 重置视频到开始
-          videoImage.play(); // 重新播放视频
-        });
-      });
-    });
-  </script>
-</body>
-</html>
+  
