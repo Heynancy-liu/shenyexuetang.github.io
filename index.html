@@ -38,14 +38,14 @@
     .media-container {
       position: absolute;
       top: 50%;
-      right: 10px; /* 调整到右上角 */
-      transform: translateY(-50%); /* 垂直居中 */
-      max-width: 35%; /* 容器最大宽度为页面宽度的35% */
+      left: 50%; /* 调整到页面中心 */
+      transform: translate(-50%, -50%); /* 水平和垂直居中 */
+      max-width: 40%; /* 容器最大宽度为页面宽度的40% */
       max-height: 95%; /* 容器最大高度为页面高度的95% */
       z-index: 1;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
     }
 
