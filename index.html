@@ -40,7 +40,7 @@
       top: 50%;
       right: 100px; /* 调整到页面右侧 */
       transform: translateY(-50%); /* 垂直居中 */
-      max-width: 45%; /* 容器最大宽度为页面宽度的45% */
+      max-width: 35%; /* 容器最大宽度为页面宽度的35% */
       max-height: 95%; /* 容器最大高度为页面高度的95% */
       z-index: 1;
       display: flex;
@@ -69,7 +69,7 @@
       font-family: 'Arial', sans-serif; /* 设置字体 */
       cursor: pointer;
       color: #000000; /* 设置字体颜色 */
-      background-color: rgba(0, 0, 255, 0.8); /* 设置背景颜色 */
+      background-color: rgba(0, 100, 255, 0.6); /* 设置背景颜色 */
       border: none;
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -79,7 +79,7 @@
     }
 
     button:hover {
-      background-color: rgba(0, 0, 255, 1); /* 鼠标悬停时背景颜色 */
+      background-color: rgba(0, 100, 255, 0.8); /* 鼠标悬停时背景颜色 */
     }
   </style>
 </head>
@@ -94,7 +94,7 @@
   <div class="media-container">
     <!-- 喜欢 -->
     <div class="media-item" style="margin-left: -60px;">
-      <button id="play-pause-button-喜欢">播放喜欢</button>
+      <button id="play-pause-button-喜欢">播放《喜欢》</button>
       <video id="video-喜欢" class="video-image" loop muted>
         <source src="喜欢.mp4" type="video/mp4">
         您的浏览器不支持视频播放。
@@ -104,17 +104,17 @@
 
     <!-- 如何 -->
     <div class="media-item" style="margin-left: 30px;">
-      <button id="play-pause-button-如何">播放如何</button>
+      <button id="play-pause-button-如何">播放《如何》</button>
       <video id="video-如何" class="video-image" loop muted>
         <source src="如何.mp4" type="video/mp4">
         您的浏览器不支持视频播放。
       </video>
-      <audio id="audio-如何" src="如何.mp4" loop></audio>
+      <audio id="audio-如何" src="如何.mp3" loop></audio>
     </div>
 
     <!-- 亲爱的 -->
     <div class="media-item" style="margin-left: 0px;">
-      <button id="play-pause-button-亲爱的">播放亲爱的</button>
+      <button id="play-pause-button-亲爱的">播放《亲爱的》</button>
       <video id="video-亲爱的" class="video-image" loop muted>
         <source src="亲爱的.mp4" type="video/mp4">
         您的浏览器不支持视频播放。
@@ -125,19 +125,23 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // 定义每首歌的播放起始时间和结束时间
       const songSettings = {
         喜欢: { startTime: 38, endTime: 97 },
         如何: { startTime: 12, endTime: 59 },
         亲爱的: { startTime: 39, endTime: 87 }
       };
 
-      // 初始化播放器
       const players = [
         { buttonId: "play-pause-button-喜欢", audioId: "audio-喜欢", videoId: "video-喜欢", song: "喜欢" },
         { buttonId: "play-pause-button-如何", audioId: "audio-如何", videoId: "video-如何", song: "如何" },
         { buttonId: "play-pause-button-亲爱的", audioId: "audio-亲爱的", videoId: "video-亲爱的", song: "亲爱的" }
       ];
+
+      function toggleButtonText(buttonId, isPlaying) {
+        const button = document.getElementById(buttonId);
+        const songText = button.dataset.songText;
+        button.textContent = isPlaying ? `暂停《${songText}》` : `播放《${songText}》`;
+      }
 
       players.forEach(player => {
         const playPauseButton = document.getElementById(player.buttonId);
@@ -147,36 +151,33 @@
 
         playPauseButton.addEventListener("click", function() {
           if (backgroundMusic.paused) {
-            // 如果音频处于暂停状态，播放指定时间段
             if (backgroundMusic.currentTime < startTime) {
-              backgroundMusic.currentTime = startTime; // 设置当前播放位置为起始时间
+              backgroundMusic.currentTime = startTime;
             }
             backgroundMusic.play();
-            playPauseButton.textContent = "暂停";
-            videoImage.play(); // 播放视频
+            toggleButtonText(playPauseButton.id, true);
+            videoImage.play();
           } else {
             backgroundMusic.pause();
-            playPauseButton.textContent = "播放";
-            videoImage.pause(); // 暂停视频
+            toggleButtonText(playPauseButton.id, false);
+            videoImage.pause();
           }
         });
 
-        // 监听音频播放时间，防止播放超过指定的结束时间
         backgroundMusic.addEventListener("timeupdate", function() {
           if (backgroundMusic.currentTime >= endTime) {
-            backgroundMusic.currentTime = startTime; // 重置到起始时间
-            backgroundMusic.play(); // 重新播放
-            videoImage.currentTime = 0; // 重置视频到开始
-            videoImage.play(); // 重新播放视频
+            backgroundMusic.currentTime = startTime;
+            backgroundMusic.play();
+            videoImage.currentTime = 0;
+            videoImage.play();
           }
         });
 
-        // 监听音频结束事件，确保循环播放
         backgroundMusic.addEventListener("ended", function() {
-          backgroundMusic.currentTime = startTime; // 重置到起始时间
-          backgroundMusic.play(); // 重新播放
-          videoImage.currentTime = 0; // 重置视频到开始
-          videoImage.play(); // 重新播放视频
+          backgroundMusic.currentTime = startTime;
+          backgroundMusic.play();
+          videoImage.currentTime = 0;
+          videoImage.play();
         });
       });
     });
