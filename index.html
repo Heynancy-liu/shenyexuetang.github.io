@@ -105,21 +105,25 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // 定义播放的起始时间和结束时间
-      const startTime = 38; // 从第38秒开始
-      const endTime = 97;   // 到第97秒结束
+      // 定义每首歌的播放起始时间和结束时间
+      const songSettings = {
+        喜欢: { startTime: 38, endTime: 97 },
+        如何: { startTime: 12, endTime: 59 },
+        亲爱的: { startTime: 39, endTime: 87 }
+      };
 
       // 初始化播放器
       const players = [
-        { buttonId: "play-pause-button-喜欢", audioId: "audio-喜欢", videoId: "video-喜欢" },
-        { buttonId: "play-pause-button-如何", audioId: "audio-如何", videoId: "video-如何" },
-        { buttonId: "play-pause-button-亲爱的", audioId: "audio-亲爱的", videoId: "video-亲爱的" }
+        { buttonId: "play-pause-button-喜欢", audioId: "audio-喜欢", videoId: "video-喜欢", song: "喜欢" },
+        { buttonId: "play-pause-button-如何", audioId: "audio-如何", videoId: "video-如何", song: "如何" },
+        { buttonId: "play-pause-button-亲爱的", audioId: "audio-亲爱的", videoId: "video-亲爱的", song: "亲爱的" }
       ];
 
       players.forEach(player => {
         const playPauseButton = document.getElementById(player.buttonId);
         const backgroundMusic = document.getElementById(player.audioId);
         const videoImage = document.getElementById(player.videoId);
+        const { startTime, endTime } = songSettings[player.song];
 
         playPauseButton.addEventListener("click", function() {
           if (backgroundMusic.paused) {
