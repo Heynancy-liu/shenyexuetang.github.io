@@ -64,7 +64,7 @@
     }
 
     button {
-      padding: 5px; /* 缩小按钮内边距 */
+      padding: 5px 10px; /* 缩小按钮大小 */
       font-size: 12px; /* 缩小字体大小 */
       cursor: pointer;
       background-color: rgba(255, 255, 255, 0.8);
@@ -72,7 +72,6 @@
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       margin-right: 10px;
-      background-image: none; /* 移除背景图像 */
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
@@ -96,7 +95,7 @@
   <div class="media-container">
     <!-- 喜欢 -->
     <div class="media-item" style="margin-left: -10px;">
-      <button id="play-pause-button-喜欢">
+      <button id="play-pause-button-喜欢" type="button">
         <img src="播放《喜欢》.png" alt="播放喜欢" style="width: 100%; height: auto;">
       </button>
       <video id="video-喜欢" class="video-image" loop muted>
@@ -108,7 +107,7 @@
 
     <!-- 如何 -->
     <div class="media-item" style="margin-left: 40px;">
-      <button id="play-pause-button-如何">
+      <button id="play-pause-button-如何" type="button">
         <img src="播放《如何》.png" alt="播放如何" style="width: 100%; height: auto;">
       </button>
       <video id="video-如何" class="video-image" loop muted>
@@ -120,7 +119,7 @@
 
     <!-- 亲爱的 -->
     <div class="media-item" style="margin-left: 20px;">
-      <button id="play-pause-button-亲爱的">
+      <button id="play-pause-button-亲爱的" type="button">
         <img src="播放《亲爱的》.png" alt="播放亲爱的" style="width: 100%; height: auto;">
       </button>
       <video id="video-亲爱的" class="video-image" loop muted>
