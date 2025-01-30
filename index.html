@@ -25,37 +25,30 @@
       z-index: -1;
     }
 
-    .png-image {
+    .media-container {
       position: absolute;
       top: 50%;
       left: 10px; /* 调整到左上角 */
       transform: translateY(-50%); /* 垂直居中 */
-      max-width: 55%; /* 图片最大宽度为页面宽度的55% */
-      max-height: 95%; /* 图片最大高度为页面高度的95% */
-      z-index: 1;
-    }
-
-    .video-image {
-      position: absolute;
-      top: 50%;
-      right: 10px; /* 调整到右上角 */
-      transform: translateY(-50%); /* 垂直居中 */
-      max-width: 40%; /* 视频最大宽度为页面宽度的40% */
-      max-height: 90%; /* 视频最大高度为页面高度的90% */
-      z-index: 1;
-      display: block; /* 默认显示 */
-    }
-
-    .music-player {
-      position: absolute;
-      top: 50%;
-      right: 50%; /* 调整到视频左侧 */
-      transform: translateY(-50%);
+      max-width: 55%; /* 容器最大宽度为页面宽度的55% */
+      max-height: 95%; /* 容器最大高度为页面高度的95% */
       z-index: 1;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
+    }
+
+    .media-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .video-image {
+      max-width: 100%;
+      max-height: 100%;
+      margin-left: 10px;
     }
 
     button {
@@ -77,63 +70,90 @@
   <!-- 背景图片 -->
   <div class="background-image"></div>
 
-  <!-- PNG图片 -->
-  <img src="wordcloud_rose.png" alt="Word Cloud Rose" class="png-image">
+  <!-- 媒体容器 -->
+  <div class="media-container">
+    <!-- 喜欢 -->
+    <div class="media-item">
+      <button id="play-pause-button-喜欢">播放喜欢</button>
+      <video id="video-喜欢" class="video-image" loop muted>
+        <source src="喜欢.mp4" type="video/mp4">
+        您的浏览器不支持视频播放。
+      </video>
+      <audio id="audio-喜欢" src="喜欢.mp3" loop></audio>
+    </div>
 
-  <!-- 视频 -->
-  <video id="video-image" class="video-image" loop muted>
-    <source src="喜欢.mp4" type="video/mp4">
-    您的浏览器不支持视频播放。
-  </video>
+    <!-- 如何 -->
+    <div class="media-item">
+      <button id="play-pause-button-如何">播放如何</button>
+      <video id="video-如何" class="video-image" loop muted>
+        <source src="如何.mp4" type="video/mp4">
+        您的浏览器不支持视频播放。
+      </video>
+      <audio id="audio-如何" src="如何.mp3" loop></audio>
+    </div>
 
-  <!-- 音乐播放器 -->
-  <div class="music-player">
-    <button id="play-pause-button">播放音乐</button>
-    <audio id="background-music" src="喜欢.mp3" loop></audio> <!-- 修改为喜欢.mp3 -->
+    <!-- 亲爱的 -->
+    <div class="media-item">
+      <button id="play-pause-button-亲爱的">播放亲爱的</button>
+      <video id="video-亲爱的" class="video-image" loop muted>
+        <source src="亲爱的.mp4" type="video/mp4">
+        您的浏览器不支持视频播放。
+      </video>
+      <audio id="audio-亲爱的" src="亲爱的.mp3" loop></audio>
+    </div>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const playPauseButton = document.getElementById("play-pause-button");
-      const backgroundMusic = document.getElementById("background-music");
-      const videoImage = document.getElementById("video-image");
-
       // 定义播放的起始时间和结束时间
       const startTime = 38; // 从第38秒开始
       const endTime = 97;   // 到第97秒结束
 
-      playPauseButton.addEventListener("click", function() {
-        if (backgroundMusic.paused) {
-          // 如果音频处于暂停状态，播放指定时间段
-          if (backgroundMusic.currentTime < startTime) {
-            backgroundMusic.currentTime = startTime; // 设置当前播放位置为起始时间
-          }
-          backgroundMusic.play();
-          playPauseButton.textContent = "暂停音乐";
-          videoImage.play(); // 播放视频
-        } else {
-          backgroundMusic.pause();
-          playPauseButton.textContent = "播放音乐";
-          videoImage.pause(); // 暂停视频
-        }
-      });
+      // 初始化播放器
+      const players = [
+        { buttonId: "play-pause-button-喜欢", audioId: "audio-喜欢", videoId: "video-喜欢" },
+        { buttonId: "play-pause-button-如何", audioId: "audio-如何", videoId: "video-如何" },
+        { buttonId: "play-pause-button-亲爱的", audioId: "audio-亲爱的", videoId: "video-亲爱的" }
+      ];
 
-      // 监听音频播放时间，防止播放超过指定的结束时间
-      backgroundMusic.addEventListener("timeupdate", function() {
-        if (backgroundMusic.currentTime >= endTime) {
+      players.forEach(player => {
+        const playPauseButton = document.getElementById(player.buttonId);
+        const backgroundMusic = document.getElementById(player.audioId);
+        const videoImage = document.getElementById(player.videoId);
+
+        playPauseButton.addEventListener("click", function() {
+          if (backgroundMusic.paused) {
+            // 如果音频处于暂停状态，播放指定时间段
+            if (backgroundMusic.currentTime < startTime) {
+              backgroundMusic.currentTime = startTime; // 设置当前播放位置为起始时间
+            }
+            backgroundMusic.play();
+            playPauseButton.textContent = "暂停";
+            videoImage.play(); // 播放视频
+          } else {
+            backgroundMusic.pause();
+            playPauseButton.textContent = "播放";
+            videoImage.pause(); // 暂停视频
+          }
+        });
+
+        // 监听音频播放时间，防止播放超过指定的结束时间
+        backgroundMusic.addEventListener("timeupdate", function() {
+          if (backgroundMusic.currentTime >= endTime) {
+            backgroundMusic.currentTime = startTime; // 重置到起始时间
+            backgroundMusic.play(); // 重新播放
+            videoImage.currentTime = 0; // 重置视频到开始
+            videoImage.play(); // 重新播放视频
+          }
+        });
+
+        // 监听音频结束事件，确保循环播放
+        backgroundMusic.addEventListener("ended", function() {
           backgroundMusic.currentTime = startTime; // 重置到起始时间
           backgroundMusic.play(); // 重新播放
           videoImage.currentTime = 0; // 重置视频到开始
           videoImage.play(); // 重新播放视频
-        }
-      });
-
-      // 监听音频结束事件，确保循环播放
-      backgroundMusic.addEventListener("ended", function() {
-        backgroundMusic.currentTime = startTime; // 重置到起始时间
-        backgroundMusic.play(); // 重新播放
-        videoImage.currentTime = 0; // 重置视频到开始
-        videoImage.play(); // 重新播放视频
+        });
       });
     });
   </script>
